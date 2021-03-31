@@ -2,8 +2,10 @@
 Pytorch implementation of DCGAN for generating 32x32 images from SVHN, CIFAR10, MNIST, FashionMNIST and USPS dataset.
 
 <br>
+Change the DB variable to change the dataset.
 
-Generated Samples:
+For using the saved model to generate images, set LOAD_MODEL to True and EPOCHS to 0.
+
 
 ## Generated Samples
 #### CIFAR10
@@ -17,6 +19,3 @@ Generated Samples:
 #### USPS
 <img src="/results/USPS.png" width="900"></img>
 
-Change the DB variable to change the dataset.
-
-For using the saved model to generate images, set LOAD_MODEL to True and EPOCHS to 0.
