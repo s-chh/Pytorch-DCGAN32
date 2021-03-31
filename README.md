@@ -5,6 +5,7 @@ Generated Samples:
 | [![MNIST](/results/MNIST.png)](/results/MNIST.png) | [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
 |:---:|:---:|:---:|
 | FashionMNIST | USPS |
+
 | [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
 |:---:|:---:|
 | FashionMNIST | USPS |
