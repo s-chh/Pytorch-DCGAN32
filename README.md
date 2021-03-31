@@ -7,15 +7,15 @@ Generated Samples:
 
 ## Generated Samples
 #### CIFAR10
- ![CIFAR10](/results/CIFAR10.png)
+<img src="/results/CIFAR10.png" width="900"></img>
 #### SVHN
- ![SVHN](/results/SVHN.png)
+<img src="/results/SVHN.png" width="900"></img>
 #### MNIST
- ![MNIST](/results/MNIST.png)
+<img src="/results/MNIST.png" width="900"></img>
 #### FashionMNIST
- ![FashionMNIST](/results/FashionMNIST.png)
+<img src="/results/FashionMNIST.png" width="900"></img>
 #### USPS
- ![USPS](/results/USPS.png)
+<img src="/results/USPS.png" width="900"></img>
 
 | CIFAR10 | SVHN |
 |:---:|:---:|
