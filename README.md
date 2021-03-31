@@ -17,14 +17,6 @@ Generated Samples:
 #### USPS
 <img src="/results/USPS.png" width="900"></img>
 
-| CIFAR10 | SVHN |
-|:---:|:---:|
-| [![FashionMNIST](/results/CIFAR10.png)](/results/CIFAR10.png) | [![USPS](/results/SVHN.png)](/results/SVHN.png) |
-
-| MNIST | FashionMNIST | USPS |
-|:---:|:---:|:---:|
-| [![MNIST](/results/MNIST.png)](/results/MNIST.png) | [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
-
 Change the DB variable to change the dataset.
 
 For using the saved model to generate images, set LOAD_MODEL to True and EPOCHS to 0.
