@@ -1,5 +1,5 @@
 # Pytorch-DCGAN-SVHN-CIFAR10-MNIST
-Pytorch implementation of DCGAN for SVHN, CIFAR10, STL-10, MNIST, FashionMNIST and USPS dataset.
+Pytorch implementation of DCGAN for SVHN, CIFAR10, MNIST, FashionMNIST and USPS dataset.
 
 Generated Samples:
 | [![MNIST](/results/MNIST.png)](/results/MNIST.png) | [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
