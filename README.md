@@ -4,7 +4,10 @@ Pytorch implementation of DCGAN for SVHN, CIFAR10, MNIST, FashionMNIST and USPS 
 Generated Samples:
 | [![MNIST](/results/MNIST.png)](/results/MNIST.png) | [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
 |:---:|:---:|:---:|
-| MNIST | FashionMNIST | USPS |
+| FashionMNIST | USPS |
+| [![FashionMNIST](/results/FashionMNIST.png)](/results/FashionMNIST.png) | [![USPS](/results/USPS.png)](/results/USPS.png) |
+|:---:|:---:|
+| FashionMNIST | USPS |
 
 Change the DB variable to change the dataset.
 
