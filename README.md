@@ -5,6 +5,18 @@ Pytorch implementation of DCGAN for generating 32x32 images from SVHN, CIFAR10, 
 
 Generated Samples:
 
+## Generated Samples
+#### CIFAR10
+ ![CIFAR10](/results/CIFAR10.png)
+#### SVHN
+ ![SVHN](/results/SVHN.png)
+#### MNIST
+ ![MNIST](/results/MNIST.png)
+#### FashionMNIST
+ ![FashionMNIST](/results/FashionMNIST.png)
+#### USPS
+ ![USPS](/results/USPS.png)
+
 | CIFAR10 | SVHN |
 |:---:|:---:|
 | [![FashionMNIST](/results/CIFAR10.png)](/results/CIFAR10.png) | [![USPS](/results/SVHN.png)](/results/SVHN.png) |
