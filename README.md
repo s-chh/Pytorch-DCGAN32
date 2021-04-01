@@ -1,4 +1,4 @@
-# Pytorch-DCGAN-SVHN-CIFAR10-MNIST
+# Pytorch-DCGAN32
 Pytorch implementation of DCGAN for generating 32x32 images from SVHN, CIFAR10, MNIST, FashionMNIST and USPS dataset.
 
 <br>
