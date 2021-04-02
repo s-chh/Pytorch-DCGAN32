@@ -90,6 +90,7 @@ class Generator(nn.Module):
         self.tconv4 = conv_block(conv_dim, channels, transpose=True, use_bn=False)
 
     def forward(self, x):
+        x = x.reshape([x.shape[0], -1, 1, 1])
         x = F.relu(self.tconv1(x))
         x = F.relu(self.tconv2(x))
         x = F.relu(self.tconv3(x))
@@ -136,7 +137,7 @@ d_opt = optim.Adam(dis.parameters(), lr=0.0002, betas=(0.5, 0.999), weight_decay
 loss_fn = nn.BCELoss()
 
 # Fix images for viz
-fixed_z = torch.randn(BATCH_SIZE, Z_DIM, 1, 1)
+fixed_z = torch.randn(BATCH_SIZE, Z_DIM)
 
 # Labels
 real_label = torch.ones(BATCH_SIZE)
@@ -163,7 +164,7 @@ for epoch in range(EPOCHS):
 
         # Loading data
         x_real, _ = data
-        z_fake = torch.randn(BATCH_SIZE, Z_DIM, 1, 1)
+        z_fake = torch.randn(BATCH_SIZE, Z_DIM)
 
         if is_cuda:
             x_real = x_real.cuda()
