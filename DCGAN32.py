@@ -13,7 +13,7 @@ import math
 BATCH_SIZE = 256
 Z_DIM = 10
 LOAD_MODEL = False
-DB = 'SVHN'  # SVHN | CIFAR10 | MNIST | FashionMNIST | USPS
+DB = 'MNIST'  # SVHN | CIFAR10 | MNIST | FashionMNIST | USPS
 
 if DB == 'MNIST' or DB == 'FashionMNIST':
     CHANNELS = 1
@@ -28,31 +28,21 @@ else:
     print("Incorrect dataset")
     exit(0)
 
-# Directories for storing model and output samples
+# Directories for storing data, model and output samples
+db_path = os.path.join('./data', DB)
+if not os.path.exists(db_path):
+    os.makedirs(db_path)
 model_path = os.path.join('./model', DB)
 if not os.path.exists(model_path):
     os.makedirs(model_path)
 samples_path = os.path.join('./samples', DB)
 if not os.path.exists(samples_path):
     os.makedirs(samples_path)
-db_path = os.path.join('./data', DB)
-if not os.path.exists(samples_path):
-    os.makedirs(samples_path)
 
-# Method for storing generated images
-def generate_imgs(z, epoch=0):
-    gen.eval()
-    fake_imgs = gen(z)
-    fake_imgs_ = vutils.make_grid(fake_imgs, normalize=True, nrow=math.ceil(BATCH_SIZE ** 0.5))
-    vutils.save_image(fake_imgs_, os.path.join(samples_path, 'sample_' + str(epoch) + '.png'))
-
-
-# Data loaders
-mean = np.array([0.5])
-std = np.array([0.5])
+# Data loader
 transform = transforms.Compose([transforms.Resize([32, 32]),
                                 transforms.ToTensor(),
-                                transforms.Normalize(mean, std)])
+                                transforms.Normalize([0.5], [0.5])])
 
 if DB == 'MNIST':
     dataset = datasets.MNIST(db_path, train=True, download=True, transform=transform)
@@ -65,8 +55,18 @@ elif DB == 'SVHN':
 elif DB == 'CIFAR10':
     dataset = datasets.CIFAR10(db_path, train=True, download=True, transform=transform)
 
-data_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=8,
-                                          drop_last=True)
+data_loader = torch.utils.data.DataLoader(dataset=dataset, 
+                                        batch_size=BATCH_SIZE, 
+                                        shuffle=True, 
+                                        num_workers=4,
+                                        drop_last=True)
+
+# Method for storing generated images
+def generate_imgs(z, epoch=0):
+    gen.eval()
+    fake_imgs = gen(z)
+    fake_imgs_ = vutils.make_grid(fake_imgs, normalize=True, nrow=math.ceil(BATCH_SIZE ** 0.5))
+    vutils.save_image(fake_imgs_, os.path.join(samples_path, 'sample_' + str(epoch) + '.png'))
 
 
 # Networks
@@ -89,6 +89,14 @@ class Generator(nn.Module):
         self.tconv3 = conv_block(conv_dim * 2, conv_dim, transpose=True)
         self.tconv4 = conv_block(conv_dim, channels, transpose=True, use_bn=False)
 
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
+                nn.init.normal_(m.weight, 0.0, 0.02)
+
+            if isinstance(m, nn.BatchNorm2d):
+                nn.init.constant_(m.weight, 1)
+                nn.init.constant_(m.bias, 0)
+
     def forward(self, x):
         x = x.reshape([x.shape[0], -1, 1, 1])
         x = F.relu(self.tconv1(x))
@@ -105,6 +113,14 @@ class Discriminator(nn.Module):
         self.conv2 = conv_block(conv_dim, conv_dim * 2)
         self.conv3 = conv_block(conv_dim * 2, conv_dim * 4)
         self.conv4 = conv_block(conv_dim * 4, 1, k_size=4, stride=1, pad=0, use_bn=False)
+
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
+                nn.init.normal_(m.weight, 0.0, 0.02)
+
+            if isinstance(m, nn.BatchNorm2d):
+                nn.init.constant_(m.weight, 1)
+                nn.init.constant_(m.bias, 0)
 
     def forward(self, x):
         alpha = 0.2
@@ -198,7 +214,7 @@ for epoch in range(EPOCHS):
                   + "\tg_loss:" + str(round(g_loss.item(), 4))
                   )
 
-    if (epoch + 1) % 10 == 0:
+    if (epoch + 1) % 5 == 0:
         torch.save(gen.state_dict(), os.path.join(model_path, 'gen.pkl'))
         torch.save(dis.state_dict(), os.path.join(model_path, 'dis.pkl'))
 
