@@ -8,14 +8,14 @@ For using the saved model to generate images, set LOAD_MODEL to True and EPOCHS 
 
 
 ## Generated Samples
-#### CIFAR10
-<img src="/Results/CIFAR10.png" width="700"></img>
-#### SVHN
-<img src="/Results/SVHN.png" width="700"></img>
 #### MNIST
 <img src="/Results/MNIST.png" width="700"></img>
+#### SVHN
+<img src="/Results/SVHN.png" width="700"></img>
 #### FashionMNIST
 <img src="/Results/FashionMNIST.png" width="700"></img>
 #### USPS
 <img src="/Results/USPS.png" width="700"></img>
+#### CIFAR10
+<img src="/Results/CIFAR10.png" width="700"></img>
 
